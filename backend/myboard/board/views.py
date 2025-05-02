@@ -17,3 +17,12 @@ class PostListAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         print("❌ 유효하지 않은 데이터:", serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class PostDetailAPIView(APIView):
+    def delete(self, request, pk):
+        try:
+            post = Post.objects.get(pk=pk)
+            post.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Post.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)

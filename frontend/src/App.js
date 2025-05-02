@@ -41,7 +41,7 @@ function App() {
 
       <div className="app-container">
         <PostForm onPostCreated={fetchPosts} />
-        <PostList posts={posts} />
+        <PostList posts={posts} onPostDeleted={fetchPosts} />
       </div>
     </div>
   );
