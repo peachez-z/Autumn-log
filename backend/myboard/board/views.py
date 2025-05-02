@@ -22,7 +22,14 @@ class PostDetailAPIView(APIView):
     def delete(self, request, pk):
         try:
             post = Post.objects.get(pk=pk)
+            input_password = request.data.get('password')
+
+            if post.password != input_password:
+                return Response({'detail': '비밀번호가 일치하지 않습니다.'}, status=status.HTTP_403_FORBIDDEN)
+
             post.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
+
         except Post.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+
