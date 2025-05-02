@@ -33,17 +33,48 @@ body {
 .header {
   position: sticky;
   top: 0;
-  background-color: #fff;
-  padding: 1rem;
-  font-weight: bold;
-  font-size: 3rem;
+  font-size: 2rem;
+  background: linear-gradient(to right, #fff0f4, #ffe4e1);
+  padding: 1.5rem 1rem 1rem;
+  border-bottom: 2px solid #f5c6cc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   text-align: center;
-  border-bottom: 1px solid #eee;
-  z-index: 2;
+  z-index: 10;
 
-  @media (max-width: 768px) {
-    font-size: 1.2rem;
-    padding: 0.75rem;
+  .header-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    .icon {
+      font-size: 1.5rem;
+    }
+
+    .title {
+      font-family: "GangwonEduSaeeum_OTFMediumA", sans-serif;
+      font-size: 2.5rem;
+      font-weight: bold;
+      animation: pop 0.4s ease-in-out;
+    }
+  }
+
+  .subtitle {
+    margin-top: 0.3rem;
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
@@ -73,4 +104,86 @@ body {
   100% {
     transform: translateX(110vw) translateY(-60px) rotate(10deg);
   }
+}
+
+.storybook-header {
+  text-align: center;
+  padding: 2rem 1rem 0rem;
+  background-color: transparent;
+  z-index: 10;
+
+  .cloud-box {
+    background: #fff7f3;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    z-index: 10;
+    justify-content: center;
+    padding: 1rem 2rem;
+    box-shadow: 0 5px 15px rgba(255, 200, 200, 0.4);
+    border: 2px dashed #ffd1dc;
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .emoji-left {
+    font-size: 1.8rem;
+    margin: 0 1rem;
+    animation: bounce 4s infinite alternate ease-in-out;
+  }
+
+  .emoji-right {
+    font-size: 1.8rem;
+    margin: 0 1rem;
+    animation: bounce 4s infinite alternate ease-in-out;
+  }
+
+  .storybook-title {
+    font-size: 2.3rem;
+    font-family: "GangwonEduSaeeum_OTFMediumA", cursive;
+    color: #dd5d82;
+    letter-spacing: 0.05em;
+    animation: bounce 4s infinite alternate ease-in-out;
+  }
+
+  .storybook-sub {
+    font-size: 1.2rem;
+    color: #666;
+    margin-top: 0.5rem;
+    font-style: italic;
+    z-index: 10;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+.mouse-bunny {
+  position: fixed;
+  width: 40px;
+  pointer-events: none; // ✅ 클릭 방해 안 하게
+  z-index: 1000;
+  transform: translate(-50%, -50%);
+  transition: top 0.1s linear, left 0.1s linear; // 부드럽게 따라감
 }

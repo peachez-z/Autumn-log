@@ -42,14 +42,14 @@ function PostForm({ onPostCreated }) {
       />
       <input
         type="password"
-        placeholder="비밀번호 (삭제 시 필요)"
+        placeholder="비밀번호 (삭제 및 수정 시 필요)"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
       />
       <div className="form-bottom">
         <div className="file-upload">
-          <label htmlFor="file">파일 선택</label>
+          <label htmlFor="file">사진 선택</label>
           <input
             type="file"
             id="file"
