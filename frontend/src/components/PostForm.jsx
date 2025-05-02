@@ -6,6 +6,7 @@ function PostForm({ onPostCreated }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,6 +14,7 @@ function PostForm({ onPostCreated }) {
     formData.append("title", title);
     formData.append("content", content);
     if (image) formData.append("image", image);
+    formData.append("password", password);
 
     try {
       await axios.post("http://localhost:8000/api/posts/", formData, {
@@ -23,6 +25,7 @@ function PostForm({ onPostCreated }) {
       setTitle("");
       setContent("");
       setImage(null);
+      setPassword("");
       onPostCreated();
     } catch (error) {
       alert("작성 실패");
@@ -35,6 +38,13 @@ function PostForm({ onPostCreated }) {
         value={content}
         onChange={(e) => setContent(e.target.value)}
         rows={3}
+        required
+      />
+      <input
+        type="password"
+        placeholder="비밀번호 (삭제 시 필요)"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
         required
       />
       <div className="form-bottom">

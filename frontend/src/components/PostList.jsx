@@ -4,12 +4,17 @@ import axios from "axios";
 
 function PostList({ posts, onPostDeleted }) {
   const handleDelete = async (id) => {
-    if (!window.confirm("정말 삭제하시겠습니까?")) return;
+    const input = window.prompt(
+      "삭제하려면 비밀번호를 입력하세요 (없으면 Enter)"
+    );
     try {
-      await axios.delete(`http://localhost:8000/api/posts/${id}/`);
+      await axios.delete(`http://localhost:8000/api/posts/${id}/`, {
+        data: { password: input || "" }, // ✅ null이나 undefined 방지
+        headers: { "Content-Type": "application/json" },
+      });
       onPostDeleted();
     } catch (err) {
-      alert("삭제 실패");
+      alert("❌ 삭제 실패: " + (err.response?.data?.detail || "서버 오류"));
     }
   };
 

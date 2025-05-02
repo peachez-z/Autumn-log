@@ -25,6 +25,25 @@
     }
   }
 
+  input[type="password"] {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+
+    &::placeholder {
+      color: #aaa;
+      font-family: "GangwonEduSaeeum_OTFMediumA"; // placeholder에만 적용할 폰트
+      font-size: 1.05rem;
+    }
+  }
+
   .form-bottom {
     display: flex;
     justify-content: space-between;

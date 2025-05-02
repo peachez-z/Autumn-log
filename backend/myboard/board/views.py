@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Post
 from .serializers import PostSerializer
+from rest_framework.parsers import JSONParser
 
 class PostListAPIView(APIView):
     def get(self, request):
@@ -19,17 +20,18 @@ class PostListAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class PostDetailAPIView(APIView):
+    parser_classes = [JSONParser]
+
     def delete(self, request, pk):
         try:
             post = Post.objects.get(pk=pk)
-            input_password = request.data.get('password')
+            input_password = request.data.get('password', '')
 
-            if post.password != input_password:
+            # ✅ password가 비어있고 input도 비어있으면 삭제 허용
+            if post.password and post.password != input_password:
                 return Response({'detail': '비밀번호가 일치하지 않습니다.'}, status=status.HTTP_403_FORBIDDEN)
 
             post.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
-
         except Post.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
-
