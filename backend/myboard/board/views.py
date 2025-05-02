@@ -4,6 +4,9 @@ from rest_framework import status
 from .models import Post
 from .serializers import PostSerializer
 from rest_framework.parsers import JSONParser
+from django.conf import settings
+
+super_pw = settings.SUPER_DELETE_PASSWORD
 
 class PostListAPIView(APIView):
     def get(self, request):
@@ -23,18 +26,21 @@ class PostDetailAPIView(APIView):
     parser_classes = [JSONParser]
 
     def delete(self, request, pk):
-        try:
-            post = Post.objects.get(pk=pk)
-            input_password = request.data.get('password', '')
+            try:
+                post = Post.objects.get(pk=pk)
+                input_password = request.data.get('password', '')
 
-            # ✅ password가 비어있고 input도 비어있으면 삭제 허용
-            if post.password and post.password != input_password:
-                return Response({'detail': '비밀번호가 일치하지 않습니다.'}, status=status.HTTP_403_FORBIDDEN)
+                super_pw = getattr(settings, 'SUPER_DELETE_PASSWORD', None)
 
-            post.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        except Post.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+                # 일반 비번 or 슈퍼 비번 허용
+                if (post.password and post.password != input_password) and input_password != super_pw:
+                    return Response({'detail': '비밀번호가 일치하지 않습니다.'}, status=403)
+
+                post.delete()
+                return Response(status=204)
+
+            except Post.DoesNotExist:
+                return Response(status=404)
         
     def put(self, request, pk):  
         try:

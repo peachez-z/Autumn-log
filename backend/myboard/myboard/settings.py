@@ -135,3 +135,11 @@ import os
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# 환경변수 설정
+import environ
+
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+SUPER_DELETE_PASSWORD = env('SUPER_DELETE_PASSWORD')
