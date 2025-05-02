@@ -4,20 +4,29 @@ import axios from "axios";
 function PostForm({ onPostCreated }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [image, setImage] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", content);
+    if (image) formData.append("image", image);
+
     try {
-      await axios.post("http://localhost:8000/api/posts/", { title, content });
+      await axios.post("http://localhost:8000/api/posts/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       setTitle("");
       setContent("");
-      onPostCreated(); // 목록 다시 불러오게
-      console.log("onPostCreated 호출됨");
+      setImage(null);
+      onPostCreated();
     } catch (error) {
-      alert("글 작성 실패:", error);
+      alert("작성 실패");
     }
   };
-
   return (
     <form onSubmit={handleSubmit}>
       <h2>새 게시물 작성</h2>
@@ -35,6 +44,8 @@ function PostForm({ onPostCreated }) {
         onChange={(e) => setContent(e.target.value)}
         required
       />
+      <br />
+      <input type="file" onChange={(e) => setImage(e.target.files[0])} />
       <br />
       <button type="submit">작성</button>
     </form>
