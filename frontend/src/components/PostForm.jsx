@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "../styles/PostForm.scss";
 
 function PostForm({ onPostCreated }) {
   const [title, setTitle] = useState("");
@@ -28,26 +29,18 @@ function PostForm({ onPostCreated }) {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>새 게시물 작성</h2>
-      <input
-        type="text"
-        placeholder="제목"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        required
-      />
-      <br />
+    <form className="post-form" onSubmit={handleSubmit}>
       <textarea
-        placeholder="내용"
+        placeholder="가을에게 하고싶은 말~~?"
         value={content}
         onChange={(e) => setContent(e.target.value)}
+        rows={3}
         required
       />
-      <br />
-      <input type="file" onChange={(e) => setImage(e.target.files[0])} />
-      <br />
-      <button type="submit">작성</button>
+      <div className="form-bottom">
+        <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+        <button type="submit">작성</button>
+      </div>
     </form>
   );
 }

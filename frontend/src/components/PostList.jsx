@@ -1,23 +1,27 @@
 import React from "react";
+import "../styles/PostList.scss";
 
 function PostList({ posts }) {
   return (
-    <div>
-      <h2>게시글 목록</h2>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id}>
+    <div className="post-list">
+      {posts.map((post) => (
+        <div key={post.id} className="post">
+          {/* <p className="post-title">{post.title}</p> */}
+          <div className="post-content">
             {post.image && (
               <img
                 src={`http://localhost:8000${post.image}`}
-                alt="게시물 이미지"
-                width="200"
+                alt="post"
+                className="post-image"
               />
             )}
-            <strong>{post.title}</strong>: {post.content}
-          </li>
-        ))}
-      </ul>
+            <p className="post-text">{post.content}</p>
+          </div>
+          <p className="timestamp">
+            {new Date(post.created_at).toLocaleString()}
+          </p>
+        </div>
+      ))}
     </div>
   );
 }

@@ -32,12 +32,17 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="page-wrapper">
+      <header className="header">ฅᐢ..ᐢ₎♡ 가을 방명록 ♡₍ᐢ..ᐢ₎ฅ</header>
+
       {rabbitClasses.map((cls, i) => (
         <Rabbit key={i} styleClass={cls} />
       ))}
-      <PostForm onPostCreated={fetchPosts} />
-      <PostList posts={posts} />
+
+      <div className="app-container">
+        <PostForm onPostCreated={fetchPosts} />
+        <PostList posts={posts} />
+      </div>
     </div>
   );
 }

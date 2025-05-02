@@ -1,18 +1,67 @@
 @import "./variables";
 @import "./animation";
+@font-face {
+  font-family: "GangwonEduSaeeum_OTFMediumA";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduSaeeum_OTFMediumA.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 
 body {
   margin: 0;
   background-color: $bg-color;
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: "GangwonEduSaeeum_OTFMediumA";
+  font-size: 1rem;
   overflow-x: hidden;
+  z-index: 10;
 }
+
+.app-container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1rem;
+  font-size: 2rem;
+  position: relative;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+  }
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  padding: 1rem;
+  font-weight: bold;
+  font-size: 3rem;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  z-index: 2;
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+    padding: 0.75rem;
+  }
+}
+
+.page-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #ffe4e1;
+}
+
+// 토끼
 
 .flying-rabbit {
   position: absolute;
   width: $rabbit-size;
   opacity: 0.9;
   animation: fly 20s linear infinite;
+  z-index: 0;
 }
 
 @keyframes fly {
