@@ -35,3 +35,20 @@ class PostDetailAPIView(APIView):
             return Response(status=status.HTTP_204_NO_CONTENT)
         except Post.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+        
+    def put(self, request, pk):  
+        try:
+            post = Post.objects.get(pk=pk)
+            input_password = request.data.get('password')
+
+            if post.password != input_password:
+                return Response({'detail': '비밀번호가 일치하지 않습니다.'}, status=status.HTTP_403_FORBIDDEN)
+
+            serializer = PostSerializer(post, data=request.data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)  # ✅ 이 줄!
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        except Post.DoesNotExist:
+            return Response({'detail': '게시글이 존재하지 않습니다.'}, status=status.HTTP_404_NOT_FOUND)

@@ -76,3 +76,39 @@
     }
   }
 }
+
+.edit-textarea {
+  width: 100%;
+  min-height: 80px;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: vertical;
+  outline: none;
+  font-family: "GangwonEduSaeeum_OTFMediumA";
+}
+
+.edit-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+
+  button {
+    padding: 0.4rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+
+    &:first-child {
+      background: #ff6699;
+      color: white;
+      font-family: "GangwonEduSaeeum_OTFMediumA";
+    }
+
+    &:last-child {
+      font-family: "GangwonEduSaeeum_OTFMediumA";
+    }
+  }
+}

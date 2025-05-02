@@ -27,6 +27,10 @@ function App() {
     });
   };
 
+  const handleUpdate = async () => {
+    await fetchPosts();
+  };
+
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -41,7 +45,11 @@ function App() {
 
       <div className="app-container">
         <PostForm onPostCreated={fetchPosts} />
-        <PostList posts={posts} onPostDeleted={fetchPosts} />
+        <PostList
+          posts={posts}
+          onPostUpdated={fetchPosts}
+          onPostDeleted={fetchPosts}
+        />
       </div>
     </div>
   );
