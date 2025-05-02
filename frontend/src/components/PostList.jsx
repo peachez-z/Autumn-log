@@ -88,13 +88,17 @@ function PostList({ posts, onPostUpdated, onPostDeleted }) {
             <p className="timestamp">
               {new Date(post.created_at).toLocaleString()}
             </p>
-            <button onClick={() => startEdit(post)}>✏️</button>
-            <button
-              className="delete-btn"
-              onClick={() => handleDelete(post.id)}
-            >
-              🗑
-            </button>
+            <div className="btn-zone">
+              <button className="update-btn" onClick={() => startEdit(post)}>
+                수정
+              </button>
+              <button
+                className="delete-btn"
+                onClick={() => handleDelete(post.id)}
+              >
+                삭제
+              </button>
+            </div>
           </div>
         </div>
       ))}

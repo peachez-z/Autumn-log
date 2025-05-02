@@ -8,6 +8,7 @@
   font-style: normal;
 }
 
+html,
 body {
   margin: 0;
   background-color: $bg-color;
@@ -55,75 +56,21 @@ body {
 }
 
 // 토끼
-
 .flying-rabbit {
   position: absolute;
-  width: $rabbit-size;
+  width: 100px;
   opacity: 0.9;
-  animation: fly 20s linear infinite;
   z-index: 0;
+  animation-name: fly;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
 }
 
 @keyframes fly {
   0% {
     transform: translateX(-150px) translateY(0) rotate(0deg);
   }
-  50% {
-    transform: translateX(100vw) translateY(-60px) rotate(15deg);
-  }
   100% {
-    transform: translateX(200vw) translateY(0) rotate(-10deg);
+    transform: translateX(110vw) translateY(-60px) rotate(10deg);
   }
-}
-
-// 각 토끼마다 위치, 속도 다르게
-.r1 {
-  top: 10%;
-  animation-delay: 0s;
-  animation-duration: 18s;
-}
-.r2 {
-  top: 20%;
-  animation-delay: 2s;
-  animation-duration: 20s;
-}
-.r3 {
-  top: 30%;
-  animation-delay: 4s;
-  animation-duration: 22s;
-}
-.r4 {
-  top: 40%;
-  animation-delay: 1s;
-  animation-duration: 25s;
-}
-.r5 {
-  top: 50%;
-  animation-delay: 3s;
-  animation-duration: 19s;
-}
-.r6 {
-  top: 60%;
-  animation-delay: 5s;
-  animation-duration: 21s;
-}
-.r7 {
-  top: 70%;
-  animation-delay: 0.5s;
-  animation-duration: 23s;
-}
-.r8 {
-  top: 80%;
-  animation-delay: 2.5s;
-  animation-duration: 20s;
-}
-.r9 {
-  top: 15%;
-  animation-delay: 3.5s;
-  animation-duration: 26s;
-}
-.r10 {
-  top: 65%;
-  animation-delay: 1.5s;
-  animation-duration: 24s;
 }

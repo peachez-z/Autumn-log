@@ -48,7 +48,15 @@ function PostForm({ onPostCreated }) {
         required
       />
       <div className="form-bottom">
-        <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+        <div className="file-upload">
+          <label htmlFor="file">파일 선택</label>
+          <input
+            type="file"
+            id="file"
+            onChange={(e) => setImage(e.target.files[0])}
+          />
+        </div>
+        {image && <span className="file-name">{image.name}</span>}
         <button type="submit">작성</button>
       </div>
     </form>

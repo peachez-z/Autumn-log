@@ -7,18 +7,35 @@ import "./styles/App.scss";
 
 function App() {
   const [posts, setPosts] = useState([]);
-  const rabbitClasses = [
-    "r1",
-    "r2",
-    "r3",
-    "r4",
-    "r5",
-    "r6",
-    "r7",
-    "r8",
-    "r9",
-    "r10",
-  ];
+  const [rabbits, setRabbits] = useState([]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newId = Date.now(); // 고유 ID
+      const top = Math.floor(Math.random() * 80) + 10; // 10~90%
+      const duration = Math.floor(Math.random() * 10) + 15; // 15~24초
+      const delay = Math.random() * 1;
+
+      const newRabbit = {
+        id: newId,
+        style: {
+          top: `${top}%`,
+          animationDuration: `${duration}s`,
+          animationDelay: `${delay}s`,
+          left: "-100px",
+        },
+      };
+
+      setRabbits((prev) => [...prev.slice(-9), newRabbit]); // 마지막 9마리만 유지
+
+      // 일정 시간 후 자동 제거
+      setTimeout(() => {
+        setRabbits((prev) => prev.filter((r) => r.id !== newId));
+      }, (duration + delay) * 1000);
+    }, 2000); // 2초마다 1마리
+
+    return () => clearInterval(interval);
+  }, []);
 
   const fetchPosts = () => {
     axios.get("http://localhost:8000/api/posts/").then((res) => {
@@ -38,10 +55,11 @@ function App() {
   return (
     <div className="page-wrapper">
       <header className="header">ฅᐢ..ᐢ₎♡ 가을 방명록 ♡₍ᐢ..ᐢ₎ฅ</header>
-
-      {rabbitClasses.map((cls, i) => (
-        <Rabbit key={i} styleClass={cls} />
-      ))}
+      <div className="flying-rabbit-container">
+        {rabbits.map((r) => (
+          <Rabbit key={r.id} style={r.style} />
+        ))}
+      </div>
 
       <div className="app-container">
         <PostForm onPostCreated={fetchPosts} />

@@ -48,6 +48,7 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 0.5rem;
+    font-size: 1rem;
 
     @media (max-width: 768px) {
       align-items: stretch;
@@ -74,6 +75,38 @@
       @media (min-width: 769px) {
         width: auto;
       }
+    }
+  }
+  .file-upload {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 8px;
+
+    label {
+      display: inline-block;
+      background-color: #f08fa2;
+      color: white;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #e06c88;
+      }
+    }
+
+    input[type="file"] {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      cursor: pointer;
+      height: 100%;
+      width: 100%;
     }
   }
 }
