@@ -39,7 +39,7 @@ function App() {
   }, []);
 
   const fetchPosts = () => {
-    axios.get("http://localhost:8000/api/posts/").then((res) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/api/posts/`).then((res) => {
       console.log("받아온 게시물:", res.data);
       setPosts(res.data);
     });
