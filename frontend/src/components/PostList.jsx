@@ -62,12 +62,11 @@ function PostList({ posts, onPostUpdated, onPostDeleted }) {
           <div className="post-content">
             {post.image && (
               <img
-                src={`${process.env.REACT_APP_API_URL}${post.image}`}
+                src={`http://223.130.152.127${post.image}`} // 또는 .env에서 관리
                 alt="post"
                 className="post-image"
               />
             )}
-
             {editingId === post.id ? (
               <>
                 <textarea
