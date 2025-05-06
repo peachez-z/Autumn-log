@@ -17,11 +17,15 @@ function PostForm({ onPostCreated }) {
     formData.append("password", password);
 
     try {
-      await axios.post("http://localhost:8000/api/posts/", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/posts/`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       setTitle("");
       setContent("");
       setImage(null);

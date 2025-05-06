@@ -22,7 +22,7 @@ function PostList({ posts, onPostUpdated, onPostDeleted }) {
 
     try {
       const res = await axios.put(
-        `http://localhost:8000/api/posts/${postId}/`,
+        `${process.env.REACT_APP_API_URL}/api/posts/${postId}/`,
         {
           content: editContent,
           password: password,
@@ -44,7 +44,7 @@ function PostList({ posts, onPostUpdated, onPostDeleted }) {
       "삭제하려면 비밀번호를 입력하세요 (없으면 Enter)"
     );
     try {
-      await axios.delete(`http://localhost:8000/api/posts/${id}/`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/posts/${id}/`, {
         data: { password: input || "" }, // ✅ null이나 undefined 방지
         headers: { "Content-Type": "application/json" },
       });
@@ -62,7 +62,7 @@ function PostList({ posts, onPostUpdated, onPostDeleted }) {
           <div className="post-content">
             {post.image && (
               <img
-                src={`http://localhost:8000${post.image}`}
+                src={`${process.env.REACT_APP_API_URL}${post.image}`}
                 alt="post"
                 className="post-image"
               />
