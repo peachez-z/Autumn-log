@@ -156,4 +156,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # 개발 중 사용하는 정적 파일들
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'myboard', 'static'),
+    os.path.join(BASE_DIR, 'frontend', 'build', 'static'),  # ✅ React 정적 파일
 ]
