@@ -150,7 +150,10 @@ ALLOWED_HOSTS = ['223.130.152.127', 'localhost', '127.0.0.1']
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'myboard', 'static')
+# 정적 파일의 루트 디렉토리 (collectstatic이 여기에 모음)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# 개발 중 사용하는 정적 파일들
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'staticfiles'),
+    os.path.join(BASE_DIR, 'myboard', 'static'),
 ]
