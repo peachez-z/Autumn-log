@@ -1,0 +1,114 @@
+.post-form {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1rem;
+  z-index: 10;
+
+  @media (max-width: 768px) {
+    padding: 0.75rem;
+  }
+
+  textarea {
+    width: 100%;
+    border: none;
+    resize: none;
+    font-size: 1.5rem;
+    font-family: inherit;
+    outline: none;
+    padding: 0.5rem;
+    background: none;
+
+    @media (max-width: 768px) {
+      font-size: 0.95rem;
+    }
+  }
+
+  input[type="password"] {
+    display: block;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+
+    &::placeholder {
+      color: #aaa;
+      font-family: "GangwonEduSaeeum_OTFMediumA"; // placeholder에만 적용할 폰트
+      font-size: 1.3rem;
+    }
+  }
+
+  .form-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+
+    @media (max-width: 768px) {
+      align-items: stretch;
+    }
+
+    input[type="file"] {
+      font-size: 0.9rem;
+    }
+
+    button {
+      background-color: #ff6699;
+      color: white;
+      border: none;
+      padding: 0.3rem 1.2rem;
+      border-radius: 9999px;
+      // font-weight: bold;
+      cursor: pointer;
+      font-size: 1.3rem;
+      font-family: "GangwonEduSaeeum_OTFMediumA";
+      transition: 0.2s;
+
+      &:hover {
+        background-color: #ff4477;
+      }
+
+      @media (min-width: 769px) {
+        width: auto;
+      }
+    }
+  }
+  .file-upload {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 8px;
+
+    label {
+      display: inline-block;
+      background-color: #f08fa2;
+      color: white;
+      font-size: 1.3rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      padding: 0.4rem;
+
+      &:hover {
+        background-color: #e06c88;
+      }
+    }
+
+    input[type="file"] {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+
+      cursor: pointer;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

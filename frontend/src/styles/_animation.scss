@@ -1,0 +1,11 @@
+@keyframes fly {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateX(100vw) translateY(-50px) rotate(10deg);
+  }
+  100% {
+    transform: translateX(200vw) translateY(0px) rotate(-10deg);
+  }
+}
